@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>마이페이지</title>
+
+ <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+<!--     <link href="lib/animate/animate.min.css" rel="stylesheet"> -->
+<!--     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet"> -->
+<!--     <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet"> -->
+
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+<style type="text/css">
+#right1{
+right:40px;
+}
+
+
+.table{
+   margin-top:50px;
+   margin-left: 300px;   
+   width: 1300px;
+   color:black;
+   
+}
+.title {
+color:black;
+border-top: 1px solid black;
+border-bottom:1px solid black;
+height:50px;
+font-weight: bold;
+
+}
+.content{
+   height:55px;
+}
+
+/* 상단 전체 */
+.kXGNQj::after {
+    display: block;
+     width: calc(100vw + 2px); 
+/*    width:800px; */
+    min-width: 1560px;
+    position: absolute;
+    top: 0px;
+    left: 50%;
+    bottom: 0px;
+    background-color: black;
+    content: "";
+    z-index: -1;
+    transform: translateX(-50%);
+     height: 380px; 
+}
+
+/* 마이페이지 글씨 */
+.cOPbLJ > a {
+    display: inline-block;
+    font-family: Musinsa, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    font-size: 24px;
+    font-weight: normal;
+    color: rgb(255, 255, 255);
+    line-height: 52px;
+    padding-left: 100px;
+}
+
+/* mypage밑 박스 */
+.JsGLX {
+    overflow: hidden;
+    padding-left: 130px;
+}
+
+/* 이름 회원정보확인 가입일 박스 */
+.dZrJws {
+    float: left;
+    min-width: calc(100% - 970px);
+    min-height: 148px;
+    padding-left: 50px;
+    box-sizing: border-box;
+}
+
+
+
+
+
+/* 이름 */
+.ebnvat > strong {
+    display: inline-block;
+    font-size: 62px;
+    line-height: 87px;
+    color: rgb(255, 255, 255);
+}
+
+.epyghO {
+    float: left;
+    width: 160px;
+    height: 160px;
+    background: url(https://image.msscdn.net/mfile_s01/_simbols/_basic/d.png) 50% 50% / cover no-repeat;
+    border-radius: 100%;
+}.xMHPc > span {
+    display: inline-flex;
+    margin: 4px 0px 0px 8px;
+    font-size: 14px;
+    line-height: 21px;
+    color: rgb(145, 145, 145);
+}.xMHPc > span > a{
+    display: inline-flex;
+    margin: 4px 0px 0px 8px;
+    font-size: 14px;
+    line-height: 21px;
+    color: rgb(145, 145, 145);
+}
+.ebnvat > a {
+    display: inline-block;
+    padding: 4px;
+    margin: 32px 0px 0px 4px;
+    font-size: 12px;
+    line-height: 18px;
+    color: rgb(145, 145, 145);
+}.dYNmgC > a {
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    padding: 4px 0px;
+    margin-left: 32px;
+    font-size: 14px;
+    line-height: 22px;
+}
+
+a {
+    text-decoration: none;
+    color:black;
+    font-weight: bold;
+}
+
+/* 적립금쪽 */
+.fJZyji > a > em {
+    display: block;
+    margin: 8px 0px;
+    font-size: 14px;
+    line-height: 21px;
+}
+
+.fJZyji > a {
+    display: flex;
+    flex-direction: column;
+    width: 180px;
+    margin-right: 10px;
+    color:white;
+}
+/* ---------------------------------- */
+.fJZyji {
+    display: flex;
+    float: left;
+    padding: 40px 0px 0px 50px;
+}
+
+.fJZyji > a > strong {
+    display: block;
+    font-family: Musinsa, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    font-size: 30px;
+    line-height: 45px;
+}
+
+
+/* 로그아웃  */
+
+.dYNmgC {
+    position: absolute;
+    right: 0px;
+    top: 120px;
+}
+.dYNmgC > a {
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    padding: 4px 0px;
+    margin-left: 32px;
+    font-size: 14px;
+    line-height: 22px;
+    color:white;
+}
+/* ---- */
+.xMHPc > em {
+    font-family: Musinsa, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    font-size: 24px;
+    line-height: 36px;
+    color: rgb(255, 255, 255);
+}
+
+
+
+
+
+
+
+
+
+body{
+    background-color: #F8F8F8;
+    }
+    
+    
+/* <맨위 상단바> */
+ .bg-light { 
+/*      background-color: rgb(45 96 49) !important;  */
+     background-color: #f9a762 !important; 
+} 
+.text-primary {
+    color: rgb(45 96 49) !important;
+}
+/* ------- */
+
+/* --------상단바 */
+.bg-success {
+     background-color: #F8F8F8 !important; 
+/*      background-color: rgb(45 96 49) !important;  */
+   height: 73px;
+}
+
+.navbar .navbar-nav .nav-link {
+
+    color: rgb(45 96 49);
+/*     color:white; */
+}
+
+.navbar-nav{
+    font-size: 15px;
+    margin-left:200px;
+    
+}
+
+.navbar .navbar-nav .nav-link {
+    margin-right: 120px;
+    outline: none;
+    font-weight: bold;  
+}
+/* --------------- */
+
+/* <마이페이지> */
+.btn-light {
+    color: #000;
+    background-color: #F8F8F8;
+    border-color: #F8F8F8;
+   margin-right:100px;
+}
+/* ------- */
+
+
+h1{
+    line-height: 0;
+}
+
+h2{
+   margin-left: 800px;
+   margin-top:100px;
+}
+#page {
+    float: left;
+    letter-spacing: 5px;
+}
+#page_form {
+    margin-left: 50%;
+}
+</style>
+</head>
+<body>
+
+
+     <div class="container-fluid bg-light px-0 wow fadeIn" data-wow-delay="0.1s">
+        <div class="row gx-0 align-items-center d-none d-lg-flex">
+            <div class="col-lg-6 px-5 text-start">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a class="small text-secondary" href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a class="small text-secondary" href="#">Career</a></li>
+                    <li class="breadcrumb-item"><a class="small text-secondary" href="#">Terms</a></li>
+                    <li class="breadcrumb-item"><a class="small text-secondary" href="#">Privacy</a></li>
+                </ol>
+            </div>
+            <div class="col-lg-6 px-5 text-end">
+                <small>Follow us:</small>
+                <div class="h-100 d-inline-flex align-items-center">
+                    <a class="btn-square text-primary border-end rounded-0" href=""><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn-square text-primary border-end rounded-0" href=""><i class="fab fa-twitter"></i></a>
+                    <a class="btn-square text-primary border-end rounded-0" href=""><i class="fab fa-linkedin-in"></i></a>
+                    <a class="btn-square text-primary pe-0" href=""><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </div> 
+
+
+
+ 
+<!--     <div class="container-fluid py-4 px-5 wow fadeIn" data-wow-delay="0.1s"> -->
+<!--         <div class="row align-items-center top-bar"> -->
+<!--             <div class="col-lg-4 col-md-12 text-center text-lg-start"> -->
+<!--                 <a href="" class="navbar-brand m-0 p-0"> -->
+<!--                         <h1 class="fw-bold text-primary m-0"><img src="img/dglogo.png" style="max-width: 45%; height: auto;">.</h1>  -->
+<!--                 </a> -->
+<!--             </div> -->     
+<!--         </div> -->
+<!--     </div> -->
+
+
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-success navbar-dark sticky-top py-lg-0 px-lg-5 wow fadeIn" data-wow-delay="0.1s">
+        <a href="#" class="navbar-brand ms-3 d-lg-none">MENU</a>
+        <button type="button" class="navbar-toggler me-3" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+     
+        <h1 class="fw-bold text-primary m-0"><img src="img/dglogo.png" style="max-width: 180px; height: auto; margin-left:130px;"></h1> 
+            <div class="navbar-nav me-auto p-3 p-lg-0">
+                <!-- <a href="index.html" class="nav-item nav-link active">Home</a> -->
+                <a href="home" class="nav-item nav-link" >홈</a>
+               <a href="about" class="nav-item nav-link" >회사소개</a>
+                <a href="board" class="nav-item nav-link">동네생활</a>
+                <a href="market" class="nav-item nav-link">중고거래</a>
+<!--                 <div class="nav-item dropdown"> -->
+<!--                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a> -->
+<!--                     <div class="dropdown-menu border-0 rounded-0 rounded-bottom m-0"> -->
+<!--                         <a href="feature.html" class="dropdown-item">Features</a> -->
+<!--                         <a href="team.html" class="dropdown-item">Our Team</a> -->
+<!--                         <a href="testimonial.html" class="dropdown-item">Testimonial</a> -->
+<!--                         <a href="404.html" class="dropdown-item">404 Page</a> -->
+<!--                     </div> -->
+<!--                 </div>  -->
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">내상점</a>
+                    <div class="dropdown-menu border-0 rounded-0 rounded-bottom m-0">
+                        <a href="m_writeForm" class="dropdown-item">판매하기</a>
+                        <a href="myMarket" class="dropdown-item">판매내역</a>
+                    </div>
+                    </div>
+            </div>
+            <a href="myPage" class="btn btn-sm btn-light rounded-pill py-2 px-4 d-none d-lg-block"><img src="https://xexymix.jpg3.kr/xexymix/2020/main/menu_mypage.png"></a>
+<!--             <a href="/shop/member.html?type=mynewmain"></a> -->
+        
+    </nav>
+
+
+
+<section class="common-mypage__sc-5trtbg-0 kXGNQj">
+<h1 class="common-mypage__sc-5trtbg-1 cOPbLJ">
+<a href="myPage">마이페이지</a>
+</h1>
+
+<div class="common-mypage__sc-5trtbg-2 dYNmgC" id="right1">
+<a href="about">고객센터</a><a href="logout">로그아웃</a>
+</div>
+<div class="common-mypage__sc-5trtbg-3 JsGLX">
+<div class="common-mypage__sc-wme82i-0 epyghO">
+</div><div class="common-mypage__sc-1loaj4c-0 dZrJws">
+<div class="common-mypage__sc-1loaj4c-1 ebnvat">
+<strong th:text=${memberInfo.name}></strong><a th:href="@{/mydataupdateForm(memberNum=${memberInfo.memberNum})}">회원정보변경</a>
+</div>
+<div class="common-mypage__sc-1loaj4c-2 xMHPc">
+<em>Num.<em th:text=${memberInfo.memberNum}></em></em>
+<span >가입일 :&nbsp;<span th:text=${#dates.year(memberInfo.writeDate)}></span>. <span th:text=${#dates.month(memberInfo.writeDate)}></span>.<span th:text=${#dates.day(memberInfo.writeDate)}></span></span></div>
+<!-- <p class="common-mypage__sc-1loaj4c-3 dwgQoo">이*린님 다음 등급인 브론즈까지 70,712점 남았습니다. -->
+<!-- </p></div><div class="common-mypage__sc-1m1vyak-0 fJZyji"> -->
+<!-- <a href="https://www.musinsa.com/billing/point"> -->
+<!-- <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg"> -->
+</div>
+<div class="common-mypage__sc-1m1vyak-0 fJZyji">
+<a href="myBoard"><svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M31.6666 31.3889H17.7333M6.33325 24.4617L24.6781 6.27777L31.6666 13.205L13.3218 31.3889H6.33325V24.4617Z" stroke="white"></path></svg><em>내가쓴 게시글 &gt;</em><strong><td th:text="${myCount}"></td></strong></a>
+<a href="buylist"><svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.6667 15.0667L16.4667 23.8555L19.0001 17.2639L21.5334 23.8555L25.3334 15.0667" stroke="white"></path><path d="M11.3999 18.8333H26.5999" stroke="white"></path><path d="M5.06665 19.9843C5.65768 27.0734 11.6594 32.6444 18.9761 32.6444C26.6845 32.6444 32.9333 26.461 32.9333 18.8333C32.9333 11.2057 26.6845 5.02222 18.9761 5.02222C11.6594 5.02222 5.65768 10.5932 5.06665 17.6824" stroke="white"></path></svg><em>나의 구매내역 &gt;</em><strong><td th:text="${buyCount}"></td></strong></a>
+<a href="buylist"><svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16.7834 25.7389L16.7834 13.8111H20.2369C21.8274 13.8111 23.1168 15.1005 23.1168 16.691V16.691C23.1168 18.2815 21.8274 19.5708 20.2369 19.5708H16.7834" stroke="white"></path><path d="M5.06665 19.9843C5.65768 27.0734 11.6594 32.6444 18.9761 32.6444C26.6845 32.6444 32.9333 26.461 32.9333 18.8333C32.9333 11.2057 26.6845 5.02222 18.9761 5.02222C11.6594 5.02222 5.65768 10.5932 5.06665 17.6824" stroke="white"></path></svg><em>적립금 &gt;</em><strong><td th:text="${buySum / 100}"></td></strong></a>
+</div>
+</div></section>      
+
+<div class="mydata">
+<h2>나의 동네생활</h2>
+<table class="table">
+
+   <tr class="title">
+      <td>글번호</td>
+      <td>제목</td>
+      <td>작성자</td>
+      <td>작성일</td>
+      <td>조회수</td>
+    </tr>
+
+
+    <tr th:if ="${#lists.isEmpty(myboardPage.boardList)}">
+       <td colspan="5">작성된 게시글이 존재하지 않습니다.</td>
+    </tr>
+       <tr class= "content" th:if ="${!#lists.isEmpty(myboardPage.boardList)and #strings.equals(boardVO.writer,session.loginId)}"
+        th:each ="boardVO : ${myboardPage.boardList}">
+       <td th:text="${boardVO.boardNum}"></td>
+       <td><a th:href="@{/read(boardNum=${boardVO.boardNum})}" th:text="${boardVO.title}"></a></td>
+    
+       <td th:text ="${boardVO.writer}"></td>
+       <td th:text="${#dates.format(boardVO.writeDate,'yyyy-MM-dd HH:mm:ss')}"></td>
+       <td th:text="${boardVO.readCount}"></td>
+    </tr>
+    
+   </table>
+
+   <div id ="page_form">
+   <div th:each="p : ${#numbers.sequence(myboardPage.startPage,myboardPage.endPage)}">
+      <a id="page" th:text="${p}" th:href="@{/myBoard(page=${p})}"></a>
+</div>
+   </div>
+</div>
+</body>

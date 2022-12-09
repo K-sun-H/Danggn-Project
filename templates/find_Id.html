@@ -1,0 +1,145 @@
+
+<!DOCTYPE html>
+<html  xmlns:th ="http://www.thymeleaf.org"><head>
+<style type="text/css">
+body{
+ background-image: url("img/img3.png") ; 
+font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;   
+background-size: 100%;
+}
+
+
+
+
+div {
+      margin-right:auto;
+      margin-left:auto;
+      
+   }
+
+   form{
+
+      background-color: rgba(234, 117,0,.55);
+       border-radius: 4px;
+         box-sizing: border-box; 
+       display: flex;
+          flex-direction: column;
+        margin-top:14px;
+        padding: 20px 0 30px;
+       width: 450px;
+       height:510px;
+       
+   }
+   
+
+.main-container{
+   width:100%;
+   display:flex;
+   flex-direction:column;
+   align-items:center;
+   margin-top: 21px;
+   
+}
+.login-input-section-wrap{
+
+   padding-top: 60px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+
+ h1 {
+    color: white;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 0px;
+    margin-left:120px;
+}
+
+a{
+text-decoration: none;
+}
+
+.login button {
+    font-size: 18px; 
+     background: rgb(45 96 49);;
+     color: white; 
+   border: none;
+   width: 320px;
+   height :45px;
+   margin-top: 50px;
+   font-size: 14px;
+   margin-left: 6px;
+   border-radius: 5px;
+}
+   p{
+      margin-left: 130px;
+}
+.find{
+   margin-left: 240px;
+}
+/* 아이디 */
+.lead{
+
+   margin-left: 55px;
+   font-size:18px;
+   font-weight: bold;
+}
+.lead2{
+   margin-left: 55px;
+   padding-bottom:20px;
+}
+
+
+span{
+   background-color: white;
+   width:300px;
+   padding-left:30px;
+    padding-top:20px; 
+    line-height: 1em;
+}
+/* ---- */
+
+a{
+   color:white;
+   }
+</style>
+
+
+<title>find id</title>
+</head>
+<body>
+
+   <div class="main-container">
+   
+
+   <section class="login-input-section-wrap">
+    <form action ="login" method="post">
+<br>
+<HR>
+ <h1>아이디 찾기</h1>
+<p style="color:white;">아이디를 찾았습니다.</p>
+<br>
+<span class="lead"th:text ="${memberInfo2.id}"></span><span class="lead2" th:text="${#dates.format(memberInfo2.writeDate,'yyyy.MM.dd 가입')}" ></span>
+<!-- <td th:text="${#dates.format(boardVO.writeDate,'yyyy-MM-dd HH:mm:ss')}"></td> -->
+
+      
+     
+  
+      <br>
+      <div class="other">
+      <p>  다른 아이디를 찾으시나요? </p>
+    <a style="color:black; font-weight: bold;" class="find" href="findIdForm" role="button">아이디찾기</a>&nbsp &nbsp &nbsp
+    </div>
+    <div class="login">
+    <button><a href="/">로그인하러가기</a></button>
+    </div>
+      <br>
+   
+         </form>
+      </section>
+      
+</div>
+</body>
+</html>

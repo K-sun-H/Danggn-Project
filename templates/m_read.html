@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<meta charset="UTF-8">
+
+<title>Insert title here</title>
+<style type="text/css">
+h1{
+   text-align: center;
+   margin-top: 50px;
+   margin-bottom: -50px;
+   
+}
+
+h2{
+font-size: 34px;
+margin-bottom: -5px;
+margin-top: 4px;
+}
+
+span{
+   font-weight: bold;
+   font-size: 20px;
+}
+
+div>span{
+   font-size:45px;
+   
+}
+
+pre{
+   font-family: inherit;
+}
+
+#box1 {
+   background-color: blue;
+}
+
+#box2 {
+/*      background-color: aqua;   */
+   width: 1400px;
+   height: 600px;
+   margin-top: 100px; 
+   position: absolute;
+   left:15%;
+   right: 10%;
+   border-top: solid;
+}
+
+/* 제목,가격 */
+#box3 {
+/*    background-color: gray; */
+   width: 700px;
+   height: 200px;
+   float: right;
+   margin-right: 100px;
+   margin-top:40px; 
+}
+
+/* 조회수,날짜 */
+#box4 {
+/*    background-color: olive; */
+   width: 500px;
+   height: 30px;
+   margin-top:10px;
+   color: gray;
+   
+}
+
+.icon{
+width: 20px;
+height: 15px;
+}
+
+.icon2{
+width: 15px;
+height: 15px;
+}
+
+/* 내용 */
+#box5 {
+/*    background-color: orange; */
+   width: 700px;
+   height: 200px;
+   margin-top:40px;
+   margin-bottom: 30px;
+   font-size: 20px;   
+}
+
+/* 사진 */
+#box6 {
+/*    background-color: yellow; */
+   width: 300px;
+   height: 400px;
+   float: left;
+   margin-top:50px;
+   margin-left: 100px;
+}
+
+/* 이미지 */
+
+img{
+   width: 400px;
+   height: 530px;
+   
+}
+
+/* ---버튼--- */
+
+.m1{
+   background-color : rgb(204, 204, 204);
+   width:160px;
+   height: 50px;
+   border: none;
+   color: white;
+   margin-right: 10px;
+   margin-left: 20px;
+}
+.m1>a{
+
+   color:black;
+   text-decoration: none;
+}
+.m2{
+   background-color : rgb(255, 164, 37);
+   width:160px;
+   height: 50px;
+   border: none;
+   color: white;
+   margin-right: 10px;
+}
+
+.m2>a{
+
+   color:black;
+   text-decoration: none;
+}
+.m3{
+   background-color :rgb(45 96 49);
+
+   width:160px;
+   height: 50px;
+   border: none;
+   color: white;
+}
+
+.m3>a{
+
+   color:black;
+   text-decoration: none;
+}
+/* 구매하기버튼 */
+.m4{
+   background-color :olive;
+
+   width:160px;
+   height: 50px;
+   border: none;
+   color: white;
+}
+
+/* 구매완료버튼 */
+.m5{
+   background-color :navy;
+
+   width:160px;
+   height: 50px;
+   border: none;
+   color: white;
+}
+
+/* ---버튼 end--- */
+</style>
+
+
+<script th:inline="javascript">
+   function del_func(){
+      var result = confirm("정말 삭제하시겠습니까?");
+      
+      if(result == true) {
+         //자바스크립트에서 파라미터포함해서 넘겨줄 때 `` 사용
+         location.href = `m_delete?marketNum=[[${market.marketNum}]]`
+      }
+      
+   }
+   
+   
+   function buy_func(){
+	      var result2 = confirm("정말 구매하시겠습니까?");
+	      
+	      if(result2 == true) {
+	         //자바스크립트에서 파라미터포함해서 넘겨줄 때 `` 사용
+	         location.href = `m_buy?marketNum=[[${market.marketNum}]]`
+	      }
+	      
+	   }
+   
+
+
+
+</script>
+</head>
+<body>
+<h1>판매내역</h1>
+<div id="box1">
+   <div id="box2">
+   <div id = "box6">
+         <img th:src="@{${market.filepath2}}"/></div>
+      <div id="box3">
+         <h2 th:text="${market.title}"></h2><br>
+         <span data-th-text="${#numbers.formatInteger(market.price, 3, 'COMMA') + ' 원'}"></span>
+         <br><br>
+         <hr>
+         
+         <div id="box4"><img class="icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAaCAYAAADMp76xAAAAAXNSR0IArs4c6QAABAdJREFUWAm9mFtIFFEYx9tZ11UW1tLoaoGEPShqq3ahgogyIgnqQXqIgih6qKgEH4JIqCgIIoowIrSn6i0irOxCQdAN7wb2IiSlSUZuGJGyumu/b9lZZo8zs7ObdeBwvvNd/uc/53zznWFcs9Js7e3tczVNWzs1NbUKiErGfJfLNYcxVyCRg8g/GAeZdiC3eTyeN2VlZd/Enm5zpRLY09Pjm5yc3EnMbghUMbpTiYd8BP8X9Dt+v/9uYWHhz1TixdcR4YGBgezh4eFD+J+gz5XAGWijYFzKycm5nArxpIQ5+hqAr9AXzgBJM4ggqXWyvLz8uplR1VkShmgOR3iVo9+jBv2LOWs9pu+H+JAdvilhyC4j6AldxqSNhT7g1Oh2u59mZWV9loDx8fGl4XB4C+IBHrpIdA7ad7C2V1RUvLPynUa4u7s7wIvVQsB8qyCDfgK5jgUaWChs0MdFyLo7OjoOo7hI98QN1sJvsHaB+cDMJYFwV1fXCnblJY5+M2dFN8GOVgcCgWeK3nQKdhXYDzE6IR2GdA2k76lgmq7o7OxcBGAzcydkJazOKVlxjvnWieyguTmZ25y21PiEFt3h/v7+rJGRkddYyhOsFhOe/gMvR6lVGliEzZL0YGPep5DTw16vd2VJScmAjhnd4WAweBaFI7KxwEaVLCQyIHOafB2ULrLo9IVkjMU0GnVJ5PmhUOim0UejIqwGuNaoTCZLNVB9yNFTkUikHqzF0kUWnepnFqv6GOdgbWYDDuo6jaduYOLWFU5Gvgk+qX4A73ei08ue6ms3B/ui3LbiozExLUd2AOxSQnWx850h2+f8/PyQYGksfoRxMhVguRRUf06qyYnOLFaNM87BjdAP0KMbq1Fu2phcMDolk2M3WIIbOGf5JjgD1hfpIosuwYmJWazqo8yvGG++6NH29vZmjo2NPcdxveJsOoXQ/yprXcKpsrLyt04kWtaKi4tDPp9vB0T6dIPdSN4Xxa5bO7dpNomR2GkGEwVchjIyMrYbyYpbwstDGSqkHL0CdJ4Jhqr6l1ezfNhvhGynumj8ahYDOSc7vI7+UeZJmke+DajjR3lAy7IoNvERX/CcfEd8pRBsMCMrfBJ2WCdITi8gpx8xD+g6u1FyGvtff15KSlLjt5aWllpumClhIdfX1+cdHR09D0gtu2TpZ/cgKdqasrOzj/M+/bKLS0qEb4JN5PU1QJbbAaVrY0M+UQKPkY73nWAkJSwgkoe84fsQ6+lLRDcD7Stkz3FV35Aq5RTPEWEdLFavt7HQXnTVPEimbnM4ThDbQtytvLy85oKCgnGHcXG3lAjHoxAogbNJlTWIq6VDQn6k5DLmih+y/EgJMsqPlFaOvZW3/y0v1A+xp9v+ADhPuomDsZuZAAAAAElFTkSuQmCC" width="21" height="13" alt="상품 상태 아이콘">&nbsp조회수:&nbsp<a th:text="${market.readCount}"></a>   &nbsp&nbsp
+         <img class="icon2" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAuRJREFUWAnFV01rE1EUzUwSMWATENpFRNyIi0YI+eiui4LoogWFgkvBH6Dgpip+dONKgivdC3XlpkWELkTQRVw1H4QwWQmhLrKwq1IwxHyM54zvDck4mc6bTO3AY97MO/eeM/e9d+c+LeLzqlQq8Wg0ujIajW6ZprkIs7SmaRfQN9HvsOG5pev6h+Fw+LVYLPb9uNaOAzUajYXBYPAcPHeATR2HF+OHEPMuFou9yGazP71spgowDONMt9t9BOMNtDkvJx5jRxgrJRKJl5lM5rcbzlVArVabR6i3YbDsZhTgXRlTs57P5w+ctv8IAPkiwr2LdskJnuUZU7KPtgoRrXE/EwL45SDeC5tcEgoRS+OR0OUg55xhPyly8tA3OcgleW0BYsEpzTnm9THaknTm874suCy4JYBbDU9c7UoXvugzwllRMvoL3hCcEUsA9zneB91qAfgjc4IzojPD4UuYZP7rRU5y60yvYPab4cIUmSK3ztweplcVX+TWEYqMilGYWHJzEabDdKroK60jO52aAHLbiUhReShwTIHJNcBiYqYLX/IxoIMOIxBYANLweRIXCoWb2FJrEPJdUUiHa8BQNLLh2EY7+IM+a7fbZ3O53G4ymbwKf08B+GWDPDrAtrR6vX4dNdwnD5yfoR9w9hCReE9ws9m82Ov1XqF728sYUbuhMR0CxEoljGz4DdPyQP6gqtXqXayxt1NEHOL9vFWQAPgawHtTgEqvEQm4Mrcg5An6VxDdL24OMPYGEbtvCeCvsd/vcwGF+UdkZRyFmHMuAo7i8fhlVsxWHhClc8kFOMur1BRy+izJct1ORCydMVCehdGnbVlwWXBbAOt2zNs6wrbv05EyjL7JMX5GsAXQG6tVgFZPQgR90vd4RUzOCQFCRAtAFpphTkeZPkE+cSZwFSBEHGCerqG/icbjVdCLtpv05fxy6dDahvLB7X5qh1OnGMfxnFUUj+dWLYHtJo/nBhaZ0vH8D6NELRJSWvu9AAAAAElFTkSuQmCC" width="16" height="16" alt="상품 상태 아이콘">&nbsp날짜:&nbsp<a th:text=${#dates.year(market.writeDate)}></a>-<a th:text=${#dates.month(market.writeDate)}></a>-<a th:text=${#dates.day(market.writeDate)}></a>
+         &nbsp&nbsp&nbsp 작성자 : <a th:text="${market.writer}"></a></div>
+        
+         <div id="box5"><pre><a th:text="${market.content}"></a></pre></div>
+         
+         <div>
+         
+   <a href="market"><button class="m1"><span>목록으로</span></button></a>
+   <a th:href="@{/m_updateForm(marketNum=${market.marketNum})}" th:if="${session.loginId==market.writer}"><button class="m2"><span>수정</span></button></a>
+   <a onclick="del_func()" href="#" th:if="${session.loginId==market.writer}"><button class="m3"><span>삭제</span></button></a>
+   <a onclick="buy_func()" href="#"><button class="m4" th:if="${session.loginId != market.writer and !#strings.equals(market.buy,'구매완료')}" ><span>구매하기</span></button></a>
+   <a onclick="구매불가" href="#"><button class="m5" th:if="${session.loginId != market.writer and #strings.equals(market.buy,'구매완료')}" ><span>구매완료</span></button></a>
+
+   </div>
+      
+      
+      
+      
+   </div>
+</div>
+</div>
+
+
+</body>
+</html>

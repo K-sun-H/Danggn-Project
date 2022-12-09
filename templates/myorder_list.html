@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html  xmlns:th ="http://www.thymeleaf.org">
+6<head>
+<meta charset="UTF-8">
+ <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+    
+    
+<title>Insert title here</title>
+
+<style type="text/css">
+
+/* <맨위 상단바> */
+ .bg-light { 
+/*      background-color: rgb(45 96 49) !important;  */
+     background-color: #f9a762 !important; 
+} 
+.text-primary {
+    color: rgb(45 96 49) !important;
+}
+/* ------- */
+#slide{
+height:600px;
+width:100%;
+
+
+}
+
+
+#jgimg{
+width: 305px;
+height: 305px;
+}
+
+
+/* .carousel-control-next{  */
+/*     margin-right : 200px;  */
+/*  }  */
+
+/*  .carousel-control-prev{  */
+/*       margin-left : 200px;  */
+/*  }  */
+
+
+/* --------상단바 */
+.bg-success {
+     background-color: #F8F8F8 !important; 
+/*      background-color: rgb(45 96 49) !important;  */
+   height: 73px;
+}
+
+.navbar .navbar-nav .nav-link {
+
+    color: rgb(45 96 49);
+/*     color:white; */
+}
+
+.navbar-nav{
+    font-size: 15px;
+    margin-left:200px;
+    
+}
+
+.navbar .navbar-nav .nav-link {
+    margin-right: 120px;
+    outline: none;
+    font-weight: bold;  
+}
+/* --------------- */
+
+
+</style>
+
+
+</head>
+<body>
+
+<!-- Topbar Start -->
+     <div class="container-fluid bg-light px-0 wow fadeIn" data-wow-delay="0.1s">
+        <div class="row gx-0 align-items-center d-none d-lg-flex">
+            <div class="col-lg-6 px-5 text-start">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a class="small text-secondary" href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a class="small text-secondary" href="#">Career</a></li>
+                    <li class="breadcrumb-item"><a class="small text-secondary" href="#">Terms</a></li>
+                    <li class="breadcrumb-item"><a class="small text-secondary" href="#">Privacy</a></li>
+                </ol>
+            </div>
+            <div class="col-lg-6 px-5 text-end">
+                <small>Follow us:</small>
+                <div class="h-100 d-inline-flex align-items-center">
+                    <a class="btn-square text-primary border-end rounded-0" href=""><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn-square text-primary border-end rounded-0" href=""><i class="fab fa-twitter"></i></a>
+                    <a class="btn-square text-primary border-end rounded-0" href=""><i class="fab fa-linkedin-in"></i></a>
+                    <a class="btn-square text-primary pe-0" href=""><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </div> 
+    <!-- Topbar End -->
+
+
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-success navbar-dark sticky-top py-lg-0 px-lg-5 wow fadeIn" data-wow-delay="0.1s">
+        <a href="#" class="navbar-brand ms-3 d-lg-none">MENU</a>
+        <button type="button" class="navbar-toggler me-3" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+     
+        <h1 class="fw-bold text-primary m-0"><img src="img/dglogo.png" style="max-width: 180px; height: auto; margin-left:130px;"></h1> 
+            <div class="navbar-nav me-auto p-3 p-lg-0">
+                <!-- <a href="index.html" class="nav-item nav-link active">Home</a> -->
+                <a href="home" class="nav-item nav-link" >홈</a>
+               <a href="about.html" class="nav-item nav-link" >회사소개</a>
+                <a href="board" class="nav-item nav-link">동네생활</a>
+                <a href="market" class="nav-item nav-link">중고거래</a>
+
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">내상점</a>
+                    <div class="dropdown-menu border-0 rounded-0 rounded-bottom m-0">
+                        <a href="m_writeForm" class="dropdown-item">판매하기</a>
+                        <a href="myMarket" class="dropdown-item">판매내역</a>
+                    </div>
+                    </div>
+            </div>
+            <a href="myPage" class="btn btn-sm btn-light rounded-pill py-2 px-4 d-none d-lg-block"><img src="https://xexymix.jpg3.kr/xexymix/2020/main/menu_mypage.png"></a>
+
+        </div>
+    </nav>
+    <!-- Navbar End -->
+
+
+
+<table border ="1">
+   <tr>
+      <td>글번호</td>
+      <td>제목</td>
+      <td>작성자</td>
+      <td>가격</td>
+      <td>작성일</td>
+    </tr>
+     <tr th:if ="${#lists.isEmpty(marketPage.marketList)}">
+        <td colspan="5">작성된 게시글이 존재하지 않습니다.</td> 
+     </tr>
+      <tr th:if ="${!#lists.isEmpty(marketPage.marketList)}"
+         th:each ="marketVO : ${marketPage.marketList}"> 
+       <tr>
+       <td th:text="${myOrderVO.myorderNum}"></td>
+       <td><a th:href="@{/m_read(myorderNum=${myorderVO.myorderNum})}" th:text="${myorderVO.title}"></a></td>
+    
+       <td th:text ="${myorderVO.writer}"></td>
+       <td th:text="${myorderVO.price}"></td>
+       
+       <td th:text="${#dates.format(myorderVO.writeDate,'yyyy-MM-dd HH:mm:ss')}"></td>
+    </tr>
+   </table>
+
+    <div th:each="p : ${#numbers.sequence(marketPage.startPage,marketPage.endPage)}">
+       <a id="page" th:text="${p}" th:href="@{/market(page=${p})}"></a> 
+
+    </div> 
+   <br>
+</body>
+</html>
+

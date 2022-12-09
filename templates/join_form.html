@@ -1,0 +1,197 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>welcome</title>
+<script type="text/javascript">
+$('#mail-Check-Btn').click(function() {
+	const eamil = $('#userEmail1').val() + $('#userEmail2').val(); // 이메일 주소값 얻어오기!
+	console.log('완성된 이메일 : ' + email); // 이메일 오는지 확인
+	const checkInput = $('.mail-check-input') // 인증번호 입력하는곳 
+	
+	$.ajax({
+		type : 'get',
+		url : '<c:url value ="/user/mailCheck?email="/>'+email, // GET방식이라 Url 뒤에 email을 뭍힐수있다.
+		success : function (data) {
+			console.log("data : " +  data);
+			checkInput.attr('disabled',false);
+			code =data;
+			alert('인증번호가 전송되었습니다.')
+		}			
+	}); // end ajax
+}); // end send eamil
+</script>
+<style type="text/css">
+
+body{
+background-image: url("img/img3.png") ;
+font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;   
+background-size: 100%;
+}
+
+
+
+
+div {
+      margin-right:auto;
+      margin-left:auto;
+      
+   }
+
+   form{
+
+      background-color: rgba(234, 117,0,.55);
+        border-radius: 4px;
+         box-sizing: border-box; 
+       display: flex;
+          flex-direction: column;
+          
+        margin-top:14px;
+        padding: 20px 0 30px;
+       width: 450px;
+       height:620px;
+       
+   }
+   
+
+.main-container{
+   width:100%;
+   display:flex;
+   flex-direction:column;
+   align-items:center;
+   margin-top: 21px;
+   
+}
+.login-input-section-wrap{
+
+   padding-top: 60px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.login-input-wrap{
+   width: 320px;
+   height :52px;
+   border: solid 1px var(   --border-gray-color );
+   background: white;
+   border-radius: 5px;
+}
+.password-wrap{
+   margin-top: 13px;
+}
+.login-input-wrap input{
+   border: none;
+   width:300px;
+   height:32px;
+   margin-top: 10px;
+   font-size: 14px;
+   margin-left: 10px;
+   border-radius: 5px;
+}
+.login-button-wrap {
+   padding-top: 13px;
+}
+
+.login-button-wrap input{
+    font-size: 18px; 
+     background: rgb(45 96 49);;
+     color: white; 
+   border: none;
+   width: 320px;
+   height :52px;
+   margin-top: 10px;
+   font-size: 14px;
+   margin-left: 6px;
+   border-radius: 5px;
+}
+
+.login_from_help {
+ padding-top: 7px;
+}
+
+.login_from_help a{
+    color: rgb(62, 62, 62);
+    font-size: 13px;
+    font-weight: 700;
+    margin-left: 200px; 
+}
+
+
+ h1 {
+    color: #fff;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 28px;
+    margin-left:60px;
+}
+
+a{
+text-decoration: none;
+}
+
+
+</style>
+</head>
+<body>
+   
+   <div class="main-container">
+   
+   <section class="login-input-section-wrap">
+   <form action ="join" method="post">
+<br>
+   <h1>회원가입</h1>
+
+   
+         <div class="login-input-wrap">   
+            <input type ="text" name ="id" size ="10" required placeholder="아이디">
+         </div>
+      
+         <div class="login-input-wrap password-wrap">   
+            <input type ="password" name ="password" size ="10" required placeholder="패스워드">
+         </div>
+      <br>
+      
+      <div class="login-input-wrap password-wrap">   
+            <input type ="text" name ="name" size="10" required placeholder="이름">
+         </div>
+      <br>
+      <div class="login-input-wrap password-wrap">   
+            <input type ="tel" name ="phone" placeholder="핸드폰 '_'없이 입력하세요" >
+         </div>
+      <br>
+      <div class="form-group email-form">
+	 <label for="email">이메일</label>
+	 <div class="input-group">
+	<input type="text" class="form-control" name="userEmail1" id="userEmail1" placeholder="이메일" >
+	<select class="form-control" name="userEmail2" id="userEmail2" >
+	<option>@gmail.com</option>
+	</select>
+	</div>   
+<div class="input-group-addon">
+	<button type="button" class="btn btn-primary" id="mail-Check-Btn">본인인증</button>
+</div>
+	<div class="mail-check-box">
+<input class="form-control mail-check-input" placeholder="인증번호 6자리를 입력해주세요!" disabled="disabled" maxlength="6">
+</div>
+	<span id="mail-check-warn"></span>
+</div>
+      <br>
+         <div class="login-button-wrap">
+            <input type="submit" value="가입완료" >
+            <div class="login_from_help">
+            <a  onclick="history.back()"> 뒤로가기</a>
+         </div>
+         </div>   
+         </form>
+         
+         
+         
+         
+         
+      </section>
+      
+</div>
+</body>
+</html>
