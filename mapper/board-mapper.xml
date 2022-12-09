@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace ="com.example.demo.repository.mapper.BoardMapper">
+   <insert id ="insert" parameterType="vo.BoardVO">
+      INSERT INTO BOARD(TITLE,WRITER,CONTENT,READ_COUNT,WRITE_DATE)
+      VALUES(#{title}, #{writer},#{content},#{readCount},#{writeDate})
+   </insert>
+
+   <select id ="selectTotalCount" resultType ="int">
+      SELECT COUNT(*) FROM BOARD
+   </select>
+   
+<!--    내가쓴글 카운트 -->
+
+   <select id ="selectMyCount" resultType ="int">
+      SELECT COUNT(BOARD_NUM) FROM BOARD WHERE WRITER=#{writer}
+      </select>
+
+<!--    내가쓴글 카운트 end -->
+   
+   <select id ="select" parameterType="int" resultMap="boardResultMap">
+         SELECT * FROM BOARD WHERE BOARD_NUM=#{boardNum}
+   </select>
+   
+   <select id ="selectList" resultMap="boardResultMap">
+      SELECT BOARD_NUM,
+      TITLE,WRITER,
+      WRITE_DATE,
+      READ_COUNT FROM 
+      BOARD ORDER BY
+       BOARD_NUM DESC
+      LIMIT #{startRow},#{count}
+   </select> 
+   
+   <update id = "update" parameterType="vo.BoardVO">
+      UPDATE BOARD SET
+      TITLE=#{title},CONTENT=#{content},
+      WRITE_DATE=#{writeDate}
+      WHERE
+      BOARD_NUM=#{boardNum}
+   </update>
+   
+   <delete id ="delete" parameterType="int">
+      DELETE FROM BOARD
+      WHERE BOARD_NUM=#{boardNum}
+   </delete>   
+   
+   <update id ="updateReadCount" parameterType="int">
+      UPDATE BOARD SET
+      READ_COUNT = READ_COUNT+1
+      WHERE BOARD_NUM =#{boardNum}
+   </update>
+   
+   
+   <select id ="myBoardList" resultMap="boardResultMap">
+      SELECT BOARD_NUM,
+      TITLE,WRITER,
+      WRITE_DATE,
+      READ_COUNT
+      FROM 
+      BOARD
+      WHERE WRITER = #{writer}
+      LIMIT #{startRow2},#{count2}
+   </select>  
+   
+   <select id ="selectTotalCount2" resultType ="int">
+      SELECT COUNT(*) FROM BOARD WHERE WRITER = #{writer}
+   </select>
+   
+
+   <resultMap type="vo.BoardVO" id="boardResultMap">
+      <result column="TITLE" property="title"/>
+      <result column="BOARD_NUM" property="boardNum"/>
+      <result column="WRITER" property="writer"/>
+      <result column="WRITE_DATE" property="writeDate"/>
+      <result column="READ_COUNT" property="readCount"/>
+      <result column="CONTENT" property="content"/>
+   </resultMap>
+
+</mapper>

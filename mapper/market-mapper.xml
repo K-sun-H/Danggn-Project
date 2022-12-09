@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace ="com.example.demo.repository.mapper.MarketMapper">
+   <insert id ="insert" parameterType="vo.MarketVO">
+      INSERT INTO MARKET(TITLE,WRITER,PRICE,CONTENT,READ_COUNT,WRITE_DATE,FILENAME,FILEPATH2,BUY,BUY_PEOPLE)
+      VALUES(#{title}, #{writer},#{price},#{content},#{readCount},#{writeDate},#{filename},#{filepath2},#{buy},#{buyPeople})
+   </insert>
+
+   <select id ="selectTotalCount" resultType ="int">
+      SELECT COUNT(*) FROM MARKET
+   </select>
+   
+   <select id ="select" parameterType="int" resultMap="marketResultMap">
+         SELECT * FROM MARKET WHERE MARKET_NUM=#{marketNum}
+   </select>
+   
+   <select id ="selectList" resultMap="marketResultMap">
+      SELECT MARKET_NUM,
+      TITLE,WRITER,PRICE,
+      WRITE_DATE,
+      READ_COUNT,
+      FILENAME,
+      FILEPATH2,
+      BUY,
+      BUY_PEOPLE
+      FROM 
+      MARKET ORDER BY
+       MARKET_NUM DESC
+      LIMIT #{startRow},#{count}
+   </select>  
+   
+   <update id = "update" parameterType="vo.MarketVO">
+      UPDATE MARKET SET
+      TITLE=#{title},CONTENT=#{content},PRICE=#{price},
+      WRITE_DATE=#{writeDate}
+      WHERE
+      MARKET_NUM=#{marketNum}
+   </update>
+   
+   <delete id ="delete" parameterType="int">
+      DELETE FROM MARKET
+      WHERE MARKET_NUM=#{marketNum}
+   </delete>   
+   
+   <update id ="updateReadCount" parameterType="int">
+      UPDATE MARKET SET
+      READ_COUNT = READ_COUNT+1
+      WHERE MARKET_NUM =#{marketNum}
+   </update>
+   
+   <!--  구매하기 -->
+   <update id = "updatebuy" parameterType="vo.MarketVO">
+      UPDATE MARKET SET BUY = "구매완료", BUY_PEOPLE =#{buyPeople} where MARKET_NUM=#{marketNum};
+      </update>
+      
+      <!--    내구매 카운트 -->
+
+   <select id ="selectBuyCount" resultType ="int">
+      SELECT COUNT(MARKET_NUM) FROM MARKET WHERE BUY_PEOPLE =#{buyPeople}
+      </select>
+      
+      
+      <!--    내 구매 총액 -->
+   <select id ="selectBuySum" resultType ="int">
+      SELECT IFNULL(SUM(PRICE),0) FROM MARKET WHERE BUY_PEOPLE =#{buyPeople}
+   </select>
+   
+   <!--    조회수순 정렬 -->
+      
+   <select id="readsort" resultMap="marketResultMap">
+       SELECT * FROM MARKET ORDER BY READ_COUNT DESC LIMIT #{count2}
+   </select>  
+
+   
+     <resultMap type="vo.MarketVO" id="marketResultMap">
+      <result column="TITLE" property="title"/>
+      <result column="MARKET_NUM" property="marketNum"/>
+      <result column="WRITER" property="writer"/>
+      <result column="PRICE" property="price"/>
+      <result column="WRITE_DATE" property="writeDate"/>
+      <result column="READ_COUNT" property="readCount"/>
+      <result column="CONTENT" property="content"/>
+      <result column="FILENAME" property="filename"/>
+      <result column="FILEPATH2" property="filepath2"/>
+      <result column="BUY" property="buy"/>
+      <result column="BUY_PEOPLE" property="buyPeople"/>
+   </resultMap>
+   
+   
+   <select id ="myBuyList" resultMap="marketResultMap">
+      SELECT MARKET_NUM,
+      TITLE,WRITER,PRICE,
+      WRITE_DATE,
+      READ_COUNT,
+      FILENAME,
+      FILEPATH2,
+      BUY,
+      BUY_PEOPLE
+      FROM 
+      MARKET
+      WHERE BUY_PEOPLE =#{buyPeople} 
+      LIMIT #{startRow3},#{count3}
+   </select>  
+   
+   <select id ="selectTotalCount2" resultType ="int">
+      SELECT COUNT(*) FROM MARKET WHERE BUY_PEOPLE = #{buyPeople} 
+   </select>
+   
+   
+   <select id ="myMarketList" resultMap="marketResultMap">
+      SELECT MARKET_NUM,
+      TITLE,WRITER,PRICE,
+      WRITE_DATE,
+      READ_COUNT,
+      FILENAME,
+      FILEPATH2,
+      BUY,
+      BUY_PEOPLE
+      FROM 
+      MARKET
+      WHERE WRITER = #{writer}
+      LIMIT #{startRow4},#{count4}
+   </select>  
+   
+   <select id ="selectTotalCount3" resultType ="int">
+      SELECT COUNT(*) FROM MARKET WHERE WRITER = #{writer}
+   </select>
+
+</mapper>
